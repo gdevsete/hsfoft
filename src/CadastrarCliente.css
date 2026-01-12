@@ -25,7 +25,7 @@
   align-items: center;
   position: relative;
   padding-left: 0;
-  padding-right: 10px; /* match Clientes header padding */
+  padding-right: 10px;
   padding-top: 0;
   padding-bottom: 0;
   box-sizing: border-box;
@@ -45,6 +45,7 @@
 .cc-title {
   padding: 0 20px;
   height: 56px;
+  font-size: 14px;
   background: #008236;
   color: white;
   font-family: 'Poppins', sans-serif;
@@ -182,21 +183,17 @@
 
 /* Toolbar - Primeira linha de campos */
 .cc-toolbar {
-  width: 100%;
-  padding: 10px;
-  background: white;
-  /* prevent toolbar from wrapping into multiple rows on narrow screens
-     instead allow horizontal scrolling so the form keeps its structure */
-  overflow: visible;
-  scrollbar-gutter: stable;
-  -webkit-overflow-scrolling: touch;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: white;
+    overflow: visible;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 .cc-row {
   width: 100%;
@@ -205,10 +202,13 @@
   overflow: visible;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center; /* align vertically like filters */
+  margin-top: -15px;  /* aproxima mais */
+  align-items: flex-end;
   gap: 10px;
   display: flex;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .cc-field {
@@ -425,7 +425,7 @@ select.cc-input option {
 /* Linha com Nome/Razão e Nome Fantasia */
 .cc-row {
   width: 100%;
-  padding: 0 25px 10px 10px;
+  padding: 10px;
   background: white;
   overflow: hidden;
   flex-direction: row;

@@ -16,6 +16,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .filter-field {
@@ -26,6 +29,8 @@
   align-items: flex-start;
   gap: 1px;
   position: relative;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .filter-clear-btn {
@@ -179,4 +184,43 @@
   font-weight: 500;
   line-height: 18px;
   word-wrap: break-word;
+}
+
+/* Responsiveness: maintain proportions but prevent fields from shrinking too much */
+@media (max-width: 1400px) {
+  .filter-field {
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .filter-field {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    flex-wrap: wrap;
+  }
+  
+  .filter-field {
+    flex: 1 1 calc(50% - 5px) !important;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-field {
+    flex: 1 1 100% !important;
+  }
+  
+  .filter-row {
+    gap: 5px;
+  }
+  
+  .filters-container {
+    padding: 5px;
+    gap: 3px;
+  }
 }

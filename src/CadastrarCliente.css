@@ -1,0 +1,1232 @@
+/* Página principal */
+.cc-page {
+  width: 100%;
+  height: calc(100vh - 70px);
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: 'Inter', sans-serif;
+  overflow: visible;
+  margin: 0;
+}
+
+/* Header com título e botões */
+.cc-header-top {
+  width: 100%;
+  background: white;
+  border-top: 1px solid #D4D4D4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding-left: 0;
+  padding-right: 10px; /* match Clientes header padding */
+  padding-top: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  gap: 20px;
+  min-height: 56px; /* match Clientes header content height to keep icons stable */
+}
+
+/* Prevent top sections from shrinking when table grows */
+.cc-header-top,
+.cc-toolbar,
+.cc-row,
+.cc-tabs,
+.cc-address-section,
+.cc-add-button-group {
+  flex: none;
+}
+.cc-title {
+  padding: 0 20px;
+  height: 56px;
+  background: #008236;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+/* show icons when hovering the row or the specific cell */
+.cc-table tbody tr:hover td.cc-cell-with-icons .cc-row-icons,
+.cc-table tbody td.cc-cell-with-icons:hover .cc-row-icons {
+  display: flex !important;
+}
+
+/* Apply the same hover-icon container style used in Clientes table
+   for the address-like sections (Endereço, Telefone, E-mail) so the
+   icons look and behave identically when they appear. Does not change
+   spacing, only the hover appearance. */
+.cc-table tbody tr:hover td.cc-cell-with-icons .cc-row-icons,
+.cc-table tbody td.cc-cell-with-icons:hover .cc-row-icons,
+.cc-table tbody tr:hover .cc-row-icons {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  right: 0;
+  background: linear-gradient(90deg, rgba(240, 253, 244, 0) 0%, #F0FDF4 100%);
+  overflow: hidden;
+  justify-content: flex-end;
+  align-items: center;
+  display: inline-flex !important;
+  z-index: 5;
+  transform: none;
+}
+
+.cc-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* ensure vertical centering matches Clientes header */
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+}
+
+.cc-btn-outline {
+  width: 110px;
+  height: 28px;
+  padding: 0 10px;
+  background: white;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1.5px solid #008236;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  color: #008236;
+}
+
+.cc-btn-icon, .cc-btn-icon-plus, .cc-btn-icon-v {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #008236;
+}
+
+.cc-btn-label {
+  flex: 1 1 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--Cadastral-primary, #008236);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+}
+
+.cc-btn-outline:hover {
+  background: #008236;
+  border-color: #008236;
+}
+
+.cc-btn-outline:hover .cc-btn-label,
+.cc-btn-outline:hover .cc-btn-icon,
+.cc-btn-outline:hover .cc-btn-icon-plus,
+.cc-btn-outline:hover .cc-btn-icon-v {
+  color: white;
+}
+
+.cc-btn-outline:hover .cc-btn-label,
+.cc-btn-outline:hover .cc-btn-icon,
+.cc-btn-outline:hover .cc-btn-icon-plus,
+.cc-btn-outline:hover .cc-btn-icon-v {
+  color: white;
+}
+
+.cc-divider {
+  display: block;
+  align-self: stretch;
+  height: 1px;
+  min-height: 1px;
+  background-image: linear-gradient(to right, rgba(0,130,54,0.95), rgba(0,130,54,0.95));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-color: rgba(0,130,54,0.95); /* fallback for older browsers */
+  margin-top: 0;
+}
+
+/* ensure header-specific divider stays visible and not collapsed by overflow */
+.cc-header-top + .cc-divider {
+  display: block;
+  height: 1px;
+  min-height: 1px;
+  background-image: linear-gradient(to right, rgba(0,130,54,0.95), rgba(0,130,54,0.95));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-color: rgba(0,130,54,0.95);
+}
+
+/* Toolbar - Primeira linha de campos */
+.cc-toolbar {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  /* prevent toolbar from wrapping into multiple rows on narrow screens
+     instead allow horizontal scrolling so the form keeps its structure */
+  overflow: visible;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+}
+.cc-row {
+  width: 100%;
+  padding: 10px; /* match filters-container spacing */
+  background: white;
+  overflow: visible;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; /* align vertically like filters */
+  gap: 10px;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.cc-field {
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 48px;
+  /* allow fields to flex freely without min-width constraints */
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure all fields have consistent height alignment */
+.cc-toolbar .cc-field,
+.cc-row .cc-field {
+  min-height: 49px; /* label (20px) + gap (1px) + input (28px) */
+  justify-content: flex-end; /* align to bottom so all inputs line up */
+}
+
+.cc-label {
+  color: #008236;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  display: block;
+}
+
+.cc-input {
+  width: 100%;
+  height: 28px;
+  background: white;
+  border: 1px solid #D4D4D4;
+  border-radius: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #404040;
+  text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  box-sizing: border-box;
+}
+
+select.cc-input {
+  background-color: white;
+}
+
+select.cc-input option {
+  background-color: white;
+  color: #404040;
+}
+
+.cc-input-disabled {
+  width: 100%;
+  height: 28px;
+  background: #F5F5F5;
+  border: 1px solid #D4D4D4;
+  border-radius: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #404040;
+  text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+.cc-input-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 7px;
+  height: 28px;
+  width: 100%;
+  border: 1px solid #D4D4D4;
+  border-radius: 4px;
+  background: white;
+  box-sizing: border-box;
+}
+
+/* Input with right-side icon (calendar) */
+.cc-input-with-icon {
+  position: relative;
+  width: 100%;
+}
+.cc-input-with-icon img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 1;
+}
+.cc-input-with-icon .cc-input {
+  padding-right: 44px;
+}
+
+/* Slightly stronger/larger calendar specifically */
+.cc-input-with-calendar img {
+  width: 22px;
+  height: 22px;
+  opacity: 1;
+}
+.cc-input-with-calendar .cc-input {
+  padding-right: 48px;
+}
+
+/* Calendar button (click to open date picker) */
+.cc-calendar-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cc-calendar-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hidden native date input used to trigger browser date picker */
+.cc-date-input-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.cc-input-text {
+  flex: 1 1 auto;
+.cc-calendar-svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+  flex: 0 0 26px;
+  fill: #0b7a3f; /* stronger green */
+  stroke: #0b7a3f;
+}
+
+  min-width: 0;
+.cc-calendar-btn {
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+  height: 100%;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #404040;
+  text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: -0.4px;
+  background: transparent;
+  padding: 0;
+}
+
+.cc-checkbox-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #404040;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: -0.4px;
+  text-transform: none;
+}
+
+.cc-checkbox-inline span {
+  text-transform: none;
+}
+
+.cc-checkbox {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  border: 1px solid #D4D4D4;
+  border-radius: 2px;
+  cursor: pointer;
+  accent-color: #008236;
+}
+
+/* Linha com Nome/Razão e Nome Fantasia */
+.cc-row {
+  width: 100%;
+  padding: 0 25px 10px 10px;
+  background: white;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end; /* align inputs to bottom for consistent baseline */
+  gap: 10px;
+  display: flex;
+  box-sizing: border-box;
+}
+.cc-toolbar {
+  width: 100%;
+  padding: 10px; /* same as filters-container */
+  background: white;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end; /* align inputs to bottom for consistent baseline */
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+/* Abas */
+.cc-tabs {
+  width: 100%;
+  padding: 10px 10px 0 10px;
+  background: white;
+  overflow: visible;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  display: flex;
+  border-bottom: 1px solid #008236;
+  box-sizing: border-box;
+}
+
+.cc-tab {
+  padding: 5px 10px;
+  margin-right: 0;
+  background: transparent;
+  color: #404040;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cc-tab:hover {
+  background: #008236;
+  color: white;
+}
+
+.cc-tab.active {
+  background: #008236;
+  color: white;
+}
+
+/* Seção de Endereço */
+.cc-address-section {
+  width: 100%;
+  padding: 10px; /* unified padding */
+  background: white;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: flex;
+  height: 120px; /* fixed height for all tabs to avoid shifting */
+  position: relative; /* allow absolute positioning of add-button inside */
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.cc-line {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* Financeiro row: align small inputs as a single row per reference */
+.cc-finance-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cc-finance-grid .cc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.cc-finance-grid .cc-input {
+  height: 28px;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+@media (max-width: 900px) {
+  .cc-finance-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Complemento: grid rows using fr units to match reference layout */
+/* Complemento: layout scoped to complement tab only */
+.cc-complement-grid-1,
+.cc-complement-grid-2,
+.cc-complement-grid-3 {
+  display: grid;
+  gap: 10px;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* New unified complement grid that aligns columns across rows */
+.cc-complement-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.9fr;
+  gap: 12px;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* First row: Vendedor | Tabela de Preço | Grupo */
+.cc-complement-grid-1 {
+  /* Vendedor (maior) | Tabela de Preço (média) | Grupo (média) */
+  grid-template-columns: 1fr 2fr 0.9fr;
+}
+
+/* Second row: Prospectador (menor) | Transportadora (maior) | Rota (menor) */
+.cc-complement-grid-2 {
+  grid-template-columns: 1fr 2fr 0.9fr;
+}
+
+/* Third row: Cadastro | Nascimento/Criação | Inscrição Municipal | Inscrição Suframa */
+.cc-complement-grid-3 {
+  /* Align thirds with the row above: left cell (will contain two fields side-by-side),
+     middle cell (Inscrição Municipal) matches Transportadora width, right cell (Suframa) matches Rota. */
+  grid-template-columns: 1fr 2fr 0.9fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Left pair container (covers the first grid column) */
+.cc-complement-left-pair {
+  grid-column: 1 / 2;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+.cc-complement-left-pair .cc-field {
+  flex: 1 1 0;
+  min-width: 0; /* allow inputs to shrink inside flex */
+  box-sizing: border-box;
+}
+
+/* Ensure inputs inside the left pair never exceed the parent column (Prospectador) */
+.cc-complement-left-pair .cc-input,
+.cc-complement-left-pair .cc-input-with-icon .cc-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Place Inscrição fields inside the Transportadora column and keep them side-by-side */
+.cc-complement-insc-mun {
+  width: 100%;
+  box-sizing: border-box;
+}
+.cc-complement-insc-suframa {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Group both inscrição fields into the Transportadora column and split its width */
+.cc-complement-insc-pair {
+  grid-column: 2 / 3; /* occupy Transportadora column */
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cc-complement-insc-pair .cc-field {
+  flex: 1 1 0;
+  min-width: 0; /* allow shrinking so fields won't overflow */
+  box-sizing: border-box;
+}
+
+/* Ensure inputs inside the inscrição pair split the available Transportadora width */
+.cc-complement-insc-pair .cc-input,
+.cc-complement-insc-pair .cc-input-with-icon .cc-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Small guard: ensure the third-row grid matches the columns above exactly */
+.cc-complement-grid-3 {
+  grid-template-columns: 1fr 2fr 0.9fr;
+}
+
+/* Make sure fields inside complement rows don't inherit unwanted flex sizing */
+.cc-address-section .cc-complement-grid-1 .cc-field,
+.cc-address-section .cc-complement-grid-2 .cc-field,
+.cc-address-section .cc-complement-grid-3 .cc-field {
+  flex: none;
+  min-width: 0;
+}
+
+@media (max-width: 1000px) {
+  .cc-complement-grid-1,
+  .cc-complement-grid-2,
+  .cc-complement-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Slight visual tweaks for inputs in Complemento to better match reference */
+.cc-address-section .cc-complement-grid-1 .cc-input,
+.cc-address-section .cc-complement-grid-2 .cc-input,
+.cc-address-section .cc-complement-grid-3 .cc-input {
+  height: 28px;
+  box-sizing: border-box;
+}
+.cc-address-section .cc-input-with-calendar img {
+  width: 18px;
+  height: 18px;
+}
+
+.cc-address-section .cc-field {
+  flex: 1 1 0;
+  min-width: 0;
+  flex-shrink: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: auto;
+}
+
+/* Phone tab grid using fr units to keep consistent spacing */
+.cc-phone-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr 2fr 2fr;
+  gap: 10px;
+  align-items: end;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cc-phone-grid .cc-field {
+  margin: 0;
+}
+
+.cc-add-btn {
+  height: 28px;
+  min-height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #008236;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cc-add-button-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  height: 48px; /* reserve same toolbar height across tabs */
+  margin: 10px 5px; /* space between section and table */
+  box-sizing: border-box;
+}
+
+/* Specific add-button-group for the E-mail tab so it can be edited independently */
+.cc-add-button-group-email {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  height: 48px; /* reserve same toolbar height across tabs */
+  margin: 10px 5px; /* space between section and table */
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+/* Tabela */
+.cc-table-container {
+  width: 100%;
+  flex: 1 1 auto;
+  padding: 0 0 0 0; 
+  background: white;
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0;
+  box-sizing: border-box;
+  position: relative;
+  /* fixed height so all table containers across tabs match exactly */
+  height: calc(100vh - 320px);
+  min-height: calc(100vh - 320px);
+  max-height: calc(100vh - 320px);
+}
+
+/* Anexos */
+.cc-attachments-actions {
+  width: 100%;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+.cc-attachments-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #737373; /* match Vector.svg */
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.cc-attachments-add-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.cc-attachments-add-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.cc-attachments-table .cc-table thead th {
+  color: #008236;
+  font-weight: 700;
+}
+.cc-attachment-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.cc-attachment-name {
+  display: flex;
+  align-items: center;
+}
+.cc-attachment-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Add-row inside tbody to match reference layout */
+.cc-attachment-add-row td {
+  padding: 10px 12px;
+  background: transparent;
+  border-bottom: 1px solid #D4D4D4;
+  text-align: left; /* align with Nome column */
+  vertical-align: middle;
+  padding-left: 16px; /* match attachment name padding */
+}
+
+/* Stronger rule to override general tbody td centering when needed */
+.cc-attachments-table .cc-attachment-add-row td {
+  text-align: left !important;
+}
+.cc-attachment-add-row .cc-attachments-add-btn {
+  background: transparent;
+  border: none;
+  color: #737373;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start; /* align contents to the left */
+  gap: 8px;
+  padding: 6px 0;
+  font-weight: 600;
+}
+.cc-attachment-add-row .cc-attachments-add-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* When using separate tds, ensure empty tds keep vertical borders visible */
+.cc-attachment-add-row .cc-attachment-add-empty,
+.cc-attachment-add-row td.cc-attachment-add-empty {
+  padding: 0;
+  border-left: 1px solid transparent; /* keep structure; real border comes from td rules */
+}
+
+.cc-attachment-add-cell {
+  padding-left: 16px;
+}
+
+.cc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.cc-table thead {
+  background: transparent;
+  border-top: 1px solid #D4D4D4;
+  border-bottom: 2px solid #D4D4D4;
+  display: table;
+  /* subtract scrollbar width so header lines match tbody when it scrolls */
+  width: calc(100% - var(--scrollbar-width, 0px));
+  table-layout: fixed;
+  z-index: 0;
+  position: relative;
+  pointer-events: none;
+}
+
+.cc-table thead th {
+  height: 32px;
+  padding: 8px 12px;
+  text-align: center;
+  color: #008236;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  border-right: 1px solid #D4D4D4;
+  border-bottom: 1px solid #D4D4D4;
+  vertical-align: middle;
+  background: white;
+}
+
+.cc-table thead th:last-child {
+  border-right: none;
+}
+
+.cc-table tbody {
+  display: block;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.cc-table tbody tr {
+  background: white;
+  border-bottom: 1px solid #D4D4D4;
+  height: 40px;
+  transition: background 0.2s ease;
+  position: relative;
+  z-index: 1;
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.cc-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.cc-table tbody td {
+  padding: 8px 12px;
+  text-align: center;
+  color: #404040;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-right: 1px solid #D4D4D4;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0; /* allow cells to shrink inside flexible layouts */
+}
+
+/* Ensure consistent sizing and alignment across all tables (Telefone, Endereço, etc.) */
+.cc-table thead th,
+.cc-table tbody td {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px 12px;
+}
+
+.cc-table thead th {
+  height: 32px;
+}
+
+.cc-table tbody tr {
+  height: 40px;
+}
+
+/* Align cc-input fields vertically with table cells */
+.cc-field .cc-input,
+.cc-field .cc-input-disabled,
+.cc-field .cc-input-text {
+  height: 28px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.cc-table tbody td:last-child {
+  border-right: none;
+}
+
+/* all tbody cells are centered to match thead */
+
+.cc-table tbody tr:hover {
+  background: rgba(72, 207, 128, 0.137);
+}
+
+.cc-cell-with-icons {
+  position: relative;
+  overflow: hidden;
+}
+
+.cc-cell-text {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.cc-row-icons {
+  position: absolute;
+  right: 8px; /* anchor to the right of the cell */
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%); /* vertical center */
+  height: auto;
+  display: none !important; /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 6px;
+  background: transparent; /* avoid overlay background */
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Ensure any inner text elements inside table cells also truncate instead of overflowing */
+.cc-table tbody td > *,
+.cc-table tbody td .cc-cell-text,
+.cc-table tbody td .cc-attachment-text,
+.cc-table tbody td span,
+.cc-table tbody td div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+/* Attachment name: reserve space for icon then truncate text */
+.cc-attachment-name .cc-attachment-text {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: calc(100% - 28px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prevent images from forcing column expansion */
+.cc-table tbody td img,
+.cc-attachment-icon,
+.cc-row-icon-btn img {
+  max-width: 28px;
+  height: auto;
+  display: inline-block;
+}
+
+  /* Flags used in E-mail table - use more specific selector to override base td sizing */
+  .cc-table tbody td.cc-flag-true,
+  .cc-table tbody td.cc-flag-false {
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  .cc-table tbody td.cc-flag-true {
+    color: #008236;
+  }
+  .cc-table tbody td.cc-flag-false {
+    color: #d9534f;
+  }
+
+.cc-row-icon-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.cc-row-icon-btn img {
+  width: 100%;
+  height: 100%;
+  filter: brightness(0) saturate(100%) invert(31%) sepia(84%) saturate(686%) hue-rotate(103deg) brightness(92%) contrast(98%);
+}
+
+.cc-table tbody tr:hover td.cc-cell-with-icons .cc-row-icons {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+/* Also show icons when hovering the entire row (covers Email table where
+   the icons live inside flag cells without cc-cell-with-icons) */
+.cc-table tbody tr:hover .cc-row-icons {
+  display: flex !important;
+  pointer-events: auto;
+}
+
+/* More specific: hide icons inside cells by default and show when the cell is hovered.
+   This ensures icons are only visible on hover in Cadastrar Cliente tables. */
+.cc-table tbody td.cc-cell-with-icons .cc-row-icons {
+  display: none !important;
+}
+.cc-table tbody td.cc-cell-with-icons:hover .cc-row-icons {
+  display: flex !important;
+
+/* Hover style for icon buttons (restore subtle visual on hover) */
+.cc-row-icon-btn:hover {
+  background: rgba(0,130,54,0.08);
+  border-radius: 4px;
+}
+.cc-row-icon-btn:hover img {
+  transform: scale(1.02);
+}
+}
+
+/* Responsivo: only collapse toolbar to column on smaller screens (<=1024px)
+   so 1280px and similar wide viewports keep the horizontal layout. */
+@media (max-width: 1024px) {
+  .cc-toolbar, .cc-row, .cc-line {
+    flex-direction: column;
+  }
+  .cc-field {
+    width: 100%;
+  }
+}
+
+/* Responsive: prevent fields and tabs from wrapping under 1080px by
+   keeping top areas on a single horizontal line and allowing horizontal
+   scrolling instead. Adjust sizes to fit smaller screens. */
+@media (max-width: 1079px) {
+  .cc-toolbar,
+  .cc-row,
+  .cc-line {
+    flex-direction: row; /* keep items on a single horizontal line */
+    flex-wrap: nowrap; /* never wrap onto multiple lines */
+    overflow-x: auto; /* allow horizontal scroll instead */
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  /* Make individual fields fixed-width so they don't collapse unpredictably
+     but allow smaller widths in tight spaces. These live inside a horizontally
+     scrollable toolbar so they won't wrap to a new line. */
+  .cc-toolbar .cc-field,
+  .cc-row .cc-field,
+  .cc-line .cc-field {
+    flex: 0 0 auto !important;
+    min-width: 140px;
+    max-width: 420px;
+    box-sizing: border-box;
+  }
+
+  /* Slightly smaller input padding/font to fit more content and enable
+     ellipsis when values overflow the input width */
+  .cc-field .cc-input,
+  .cc-field .cc-input-disabled,
+  .cc-field .cc-input-text {
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  /* Inputs inside the toolbar should not force the toolbar to expand */
+  .cc-toolbar .cc-field .cc-input,
+  .cc-toolbar .cc-field .cc-input-disabled {
+    max-width: 320px;
+  }
+
+  /* Tabs: allow scrolling rather than wrapping */
+  .cc-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Keep add-button-group layout but tighten margins */
+  .cc-add-button-group,
+  .cc-add-button-group-email {
+    padding-right: 8px;
+    margin: 6px 4px;
+  }
+
+  /* Table container: allow horizontal scroll so columns remain on one line */
+  .cc-table-container {
+    overflow-x: auto;
+    overflow-y: hidden; /* vertical scrolling stays inside tbody */
+  }
+
+  /* Ensure tables can grow horizontally and be scrolled */
+  .cc-table {
+    min-width: 980px; /* adjust as necessary for widest table */
+  }
+
+  /* Reduce header/button sizes to gain space */
+  .cc-title { font-size: 13px; }
+  .cc-btn-outline { width: 96px; height: 26px; }
+}
+/* Estilos para componentes padronizados na seção Complemento */
+.cc-complement-grid .select-button-wrapper,
+.cc-complement-grid .prospectador-select-wrapper,
+.cc-complement-grid .transportadora-select-wrapper {
+  width: 100%;
+}
+
+.cc-complement-grid .select-button-label,
+.cc-complement-grid .prospectador-select-label,
+.cc-complement-grid .transportadora-select-label {
+  color: #008236;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  font-family: 'Inter', sans-serif;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.cc-complement-grid .select-button-field,
+.cc-complement-grid .prospectador-select-field,
+.cc-complement-grid .transportadora-select-field {
+  height: 28px;
+  padding: 0 7px;
+  border: 1px solid #D4D4D4;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #404040;
+}
+
+.cc-complement-grid .select-button-field:hover,
+.cc-complement-grid .prospectador-select-field:hover,
+.cc-complement-grid .transportadora-select-field:hover {
+  background-color: #fafafa;
+  border-color: #008236;
+}

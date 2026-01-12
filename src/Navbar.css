@@ -1,0 +1,260 @@
+.navbar {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.navbar-content {
+  align-self: stretch;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar-left {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-container {
+  align-self: stretch;
+  padding-right: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 113px;
+  height: 40.28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo img {
+  width: 114.61px;
+  height: 44.94px;
+  position: absolute;
+  left: -0.22px;
+  top: -1.26px;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-item {
+  width: 150px;
+  height: 42px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.menu-icon {
+  width: 27px;
+  height: 27px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-item span {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
+  transition: color 0.2s ease;
+}
+
+/* Hover effects com cores temáticas */
+.menu-cadastros:hover,
+.menu-cadastros.active {
+  background: #008236 !important;
+}
+
+.menu-cadastros:hover span,
+.menu-cadastros.active span {
+  color: white !important;
+}
+
+.menu-cadastros:hover .menu-icon img,
+.menu-cadastros.active .menu-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.menu-comercial:hover,
+.menu-comercial.active {
+  background: #0047CC !important;
+}
+
+.menu-comercial:hover span,
+.menu-comercial.active span {
+  color: white !important;
+}
+
+.menu-comercial:hover .menu-icon img,
+.menu-comercial.active .menu-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.menu-financeiro:hover,
+.menu-financeiro.active {
+  background: #E66400 !important;
+}
+
+.menu-financeiro:hover span,
+.menu-financeiro.active span {
+  color: white !important;
+}
+
+.menu-financeiro:hover .menu-icon img,
+.menu-financeiro.active .menu-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.menu-fiscal:hover,
+.menu-fiscal.active {
+  background: #8300E6 !important;
+}
+
+.menu-fiscal:hover span,
+.menu-fiscal.active span {
+  color: white !important;
+}
+
+.menu-fiscal:hover .menu-icon img,
+.menu-fiscal.active .menu-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.menu-relatorios:hover,
+.menu-relatorios.active {
+  background: #0096B8 !important;
+}
+
+.menu-relatorios:hover span,
+.menu-relatorios.active span {
+  color: white !important;
+}
+
+.menu-relatorios:hover .menu-icon img,
+.menu-relatorios.active .menu-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.navbar-right {
+  flex: 1;
+  align-self: stretch;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-container {
+  width: 187px;
+  height: 34px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-button {
+  height: 34px;
+  padding: 6px 7px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.search-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-icons {
+  align-self: stretch;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-button {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.50);
+  overflow: hidden;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

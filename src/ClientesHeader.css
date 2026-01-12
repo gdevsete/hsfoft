@@ -1,0 +1,118 @@
+.clientes-header-container {
+  width: 100%;
+  height: auto; /* trocar 50px por auto */
+  background: white;
+  border-top: 1px solid #D4D4D4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.clientes-header-content {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 56px; /* match cc-header-top to keep header height consistent */
+}
+
+.clientes-title-section {
+  padding: 0 20px;
+  height: 56px;
+  background: #008236;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  min-width: fit-content;
+}
+
+.clientes-title {
+  text-align: center;
+  color: white;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.clientes-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+}
+
+.btn-action {
+  width: 110px;
+  height: 28px;
+  padding: 0 10px;
+  background: white;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1.5px solid #008236;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-icon-plus, .btn-icon-print {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #008236;
+}
+
+.btn-label {
+  flex: 1 1 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--Cadastral-primary, #008236);
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+  word-wrap: break-word;
+  transition: color 0.2s ease;
+}
+
+.btn-action:hover {
+  background: #008236;
+  border-color: #008236;
+}
+
+.btn-action:hover .btn-label,
+.btn-action:hover .btn-icon-plus,
+.btn-action:hover .btn-icon-print {
+  color: white;
+}
+
+.clientes-header-border {
+  align-self: stretch;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0,130,54,0.9), rgba(0,130,54,0.9));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  margin-top: 0;
+}

@@ -1,0 +1,10 @@
+{
+    "mcpFigma.autoStartWebSocket": true,
+    "chat.mcp.serverSampling": {
+        "hsfoft-main/.vscode/mcp.json: com.figma.mcp/mcp": {
+            "allowedModels": [
+                "copilot/claude-haiku-4.5"
+            ]
+        }
+    }
+}

@@ -1,0 +1,191 @@
+/* Dropdown Menu Styles - Não interfere com Navbar */
+.dropdown-menu-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  overflow: hidden;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu-container.visible {
+  display: flex;
+}
+
+/* Tema Cadastros (Verde) */
+.dropdown-menu-cadastros {
+  background: #CCFAE3;
+  border-top: 2px solid #008236;
+  border-bottom: 2px solid #008236;
+}
+
+.dropdown-menu-cadastros .dropdown-section-title {
+  color: #008236;
+}
+
+.dropdown-menu-cadastros .dropdown-item:hover {
+  background-color: rgba(0, 130, 54, 0.1);
+}
+
+.dropdown-menu-cadastros .dropdown-item:hover .dropdown-item-text {
+  color: #008236;
+}
+
+/* Tema Comercial (Azul) */
+.dropdown-menu-comercial {
+  background: #CCDAF5;
+  border-top: 2px solid #0047CC;
+  border-bottom: 2px solid #0047CC;
+}
+
+.dropdown-menu-comercial .dropdown-section-title {
+  color: #0047CC;
+}
+
+.dropdown-menu-comercial .dropdown-item:hover {
+  background-color: rgba(0, 71, 204, 0.1);
+}
+
+.dropdown-menu-comercial .dropdown-item:hover .dropdown-item-text {
+  color: #0047CC;
+}
+
+/* Tema Financeiro (Laranja) */
+.dropdown-menu-financeiro {
+  background: #FAE0CC;
+  border-top: 2px solid #E66400;
+  border-bottom: 2px solid #E66400;
+}
+
+.dropdown-menu-financeiro .dropdown-section-title {
+  color: #E66400;
+}
+
+.dropdown-menu-financeiro .dropdown-item:hover {
+  background-color: rgba(230, 100, 0, 0.1);
+}
+
+.dropdown-menu-financeiro .dropdown-item:hover .dropdown-item-text {
+  color: #E66400;
+}
+
+/* Tema Fiscal (Roxo) */
+.dropdown-menu-fiscal {
+  background: #E6CCFA;
+  border-top: 2px solid #8300E6;
+  border-bottom: 2px solid #8300E6;
+}
+
+.dropdown-menu-fiscal .dropdown-section-title {
+  color: #8300E6;
+}
+
+.dropdown-menu-fiscal .dropdown-item:hover {
+  background-color: rgba(131, 0, 230, 0.1);
+}
+
+.dropdown-menu-fiscal .dropdown-item:hover .dropdown-item-text {
+  color: #8300E6;
+}
+
+/* Tema Relatórios (Ciano) */
+.dropdown-menu-relatorios {
+  background: #CCF2FA;
+  border-top: 2px solid #0096B8;
+  border-bottom: 2px solid #0096B8;
+}
+
+.dropdown-menu-relatorios .dropdown-section-title {
+  color: #0096B8;
+}
+
+.dropdown-menu-relatorios .dropdown-item:hover {
+  background-color: rgba(0, 150, 184, 0.1);
+}
+
+.dropdown-menu-relatorios .dropdown-item:hover .dropdown-item-text {
+  color: #0096B8;
+}
+
+.dropdown-menu-content {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dropdown-section {
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.dropdown-section-header {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdown-section-title {
+  text-align: center;
+  font-size: 11px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.dropdown-section-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.dropdown-item {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item-text {
+  text-align: center;
+  color: #1A1A1A;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.dropdown-item:hover .dropdown-item-text {
+  /* Cor será definida pelo tema (verde ou azul) */
+}

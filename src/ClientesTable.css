@@ -1,0 +1,243 @@
+.table-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* allow horizontal scrolling so long columns don't wrap the layout */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.table-header {
+  width: 100%;
+  height: 24px;
+  display: grid;
+  /* all columns with equal flexible sizing */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: #008236;
+  position: sticky;
+  top: 0;
+  min-width: 100%;
+}
+
+.header-cell {
+  background: #008236;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header-cell:last-child {
+  border-right: none;
+}
+
+.header-text {
+  color: white;
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.table-body {
+  flex: 1;
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* ensure no gap between rows when the container shrinks */
+  align-items: stretch; /* keep rows full width */
+}
+
+.table-row {
+  width: 100%;
+  height: 48px; /* altura de acordo com o figma */
+  min-height: 48px;
+  background: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-bottom: 1px solid #D4D4D4;
+  transition: background 0.2s ease, opacity 0.3s ease;
+  align-items: center;
+  box-sizing: border-box;
+  flex: 0 0 auto; /* prevent flex shrinking/expansion so rows stay stacked */
+  min-width: 100%;
+  overflow: hidden; /* keep content clipped and show ellipsis instead */
+}
+
+.table-row.removing {
+  opacity: 0;
+}
+
+/* allow flex children to shrink and enable truncation of long text */
+.table-row {
+  min-width: 0;
+}
+
+/* Make direct children span full row height so internal spacing is consistent */
+.table-row > * {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.table-row:hover {
+  background: rgba(72, 207, 128, 0.137);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell-double {
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%; /* ensure cell fills the row height */
+  border-right: 1px solid #D4D4D4;
+  position: relative;
+  min-width: 0;
+}
+
+/* ensure cells can shrink and allow inner text to ellipsis */
+.table-cell-double {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.table-cell-double:last-child {
+  border-right: none;
+}
+
+/* Single line cells (Cidade/Estado, Telefone/E-mail) - same as double */
+.table-cell-single {
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%; /* ensure cell fills the row height */
+  border-right: 1px solid #D4D4D4;
+  position: relative;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.table-cell-single:last-child {
+  border-right: none;
+}
+
+.cell-hover-icons {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: linear-gradient(90deg, rgba(240, 253, 244, 0) 0%, #F0FDF4 100%);
+  overflow: hidden;
+  justify-content: flex-end;
+  align-items: center;
+  display: inline-flex;
+  z-index: 5;
+}
+
+.cell-hover-content {
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.icon-wrapper {
+  width: 21.78px;
+  height: 21.78px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.icon-inner {
+  width: 21.78px;
+  height: 21.78px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell-hover-icons img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.cell-text-primary {
+  color: #404040;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.cell-text-primary,
+.cell-text-secondary,
+.cell-text-secondary-email {
+  min-width: 0; /* important for truncation inside flex items */
+  display: block;
+  max-width: 100%;
+}
+
+.cell-text-secondary {
+  color: #737373;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.cell-text-secondary-email {
+  color: #737373;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: lowercase;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}

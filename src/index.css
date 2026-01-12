@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* Global select arrow styling (consistent across the project) */
+:root {
+  --select-arrow-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 5' width='10' height='5'%3E%3Cpath d='M0 0 L5 5 L10 0' fill='%23008236'/%3E%3C/svg%3E");
+  --select-arrow-size: 10px 6px;
+  --select-arrow-position: right 12px center;
+  --select-arrow-padding: 36px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: var(--select-arrow-svg);
+  background-repeat: no-repeat;
+  background-position: var(--select-arrow-position);
+  background-size: var(--select-arrow-size);
+  padding-right: var(--select-arrow-padding);
+  cursor: pointer;
+}
+
+/* Ensure selects inside inputs keep the arrow and spacing */
+.cc-input select,
+.filter-field select {
+  background-image: var(--select-arrow-svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: var(--select-arrow-position) !important;
+  background-size: var(--select-arrow-size) !important;
+  padding-right: var(--select-arrow-padding) !important;
+}
+
+/* Ensure selects that themselves carry the cc-input class also get the arrow */
+select.cc-input {
+  appearance: none;
+  background-image: var(--select-arrow-svg) !important;
+  background-repeat: no-repeat !important;
+  background-position: var(--select-arrow-position) !important;
+  background-size: var(--select-arrow-size) !important;
+  padding-right: var(--select-arrow-padding) !important;
+}

@@ -1,0 +1,182 @@
+.filters-container {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.filter-row {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.filter-field {
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 1px;
+  position: relative;
+}
+
+.filter-clear-btn {
+  position: absolute;
+  right: 28px;
+  top: 72%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #008236;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 10;
+  line-height: 1;
+}
+
+.filter-clear-btn:hover {
+  color: #00a63e;
+}
+
+.filter-field label {
+  align-self: stretch;
+  color: #008236;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.filter-field select,
+.filter-field input {
+  align-self: stretch;
+  height: 28px;
+  padding-left: 7px;
+  padding-right: 7px;
+  background: white;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid #D4D4D4;
+  color: #404040;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 20px;
+  word-wrap: break-word;
+  outline: none;
+}
+
+.filter-field select {
+  /* use global arrow settings from index.css (single, consistent arrow) */
+  appearance: none;
+  background-image: var(--select-arrow-svg);
+  background-repeat: no-repeat;
+  background-position: var(--select-arrow-position);
+  background-size: var(--select-arrow-size);
+  padding-right: var(--select-arrow-padding);
+  cursor: pointer;
+  background-color: white;
+}
+
+.filter-field select option {
+  background-color: white;
+  color: #404040;
+}
+
+.filter-field input {
+  text-transform: none;
+}
+
+.filter-field-radio {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.filter-field-radio > label {
+  align-self: stretch;
+  color: #008236;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.radio-group {
+  align-self: stretch;
+  padding: 0 5px;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radio-group label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.radio-group input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 100px;
+  border: 1px solid #D4D4D4;
+  cursor: pointer;
+  appearance: none;
+  position: relative;
+}
+
+.radio-group input[type="radio"]:checked {
+  border-color: #008236;
+  background-color: white;
+}
+
+.radio-group input[type="radio"]:checked::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #008236;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-group span {
+  text-align: center;
+  color: #404040;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 18px;
+  word-wrap: break-word;
+}

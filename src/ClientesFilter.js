@@ -21,6 +21,28 @@ const ClientesFilter = () => {
 
   const [hoveredField, setHoveredField] = useState(null);
 
+  // Placeholders estilizados com "0" em verde
+  const clientePlaceholder = (
+    <span>
+      <span style={{ color: '#008236', fontWeight: 700 }}>0</span>
+      <span> - TODOS OS CLIENTES</span>
+    </span>
+  );
+
+  const empresaPlaceholder = (
+    <span>
+      <span style={{ color: '#008236', fontWeight: 700 }}>0</span>
+      <span> - TODAS AS EMPRESAS</span>
+    </span>
+  );
+
+  const vendedorPlaceholder = (
+    <span>
+      <span style={{ color: '#008236', fontWeight: 700 }}>0</span>
+      <span> - TODOS OS VENDEDORES</span>
+    </span>
+  );
+
   // Mapeamento de clientes com dados para auto-preenchimento
   const clienteDataMap = {
     1: {
@@ -210,7 +232,7 @@ const ClientesFilter = () => {
             value={filters.cliente} 
             onChange={handleClienteChange}
             options={clienteOptions}
-            placeholder="Selecione cliente..."
+            placeholder={clientePlaceholder}
           />
           {hoveredField === 'cliente' && filters.cliente && (
             <button
@@ -282,7 +304,7 @@ const ClientesFilter = () => {
             value={filters.empresa} 
             onChange={(val) => setFilters({...filters, empresa: val})}
             options={empresaOptions}
-            placeholder="Selecione empresa..."
+            placeholder={empresaPlaceholder}
           />
           {hoveredField === 'empresa' && filters.empresa && (
             <button
@@ -356,7 +378,7 @@ const ClientesFilter = () => {
             value={filters.vendedor} 
             onChange={(val) => setFilters({...filters, vendedor: val})}
             options={vendedorOptions}
-            placeholder="Selecione vendedor..."
+            placeholder={vendedorPlaceholder}
           />
           {hoveredField === 'vendedor' && filters.vendedor && (
             <button

@@ -39,8 +39,10 @@ const ClienteSelect = ({ label, value, onChange, options, placeholder = 'Selecio
     setIsOpen(false);
   };
 
+  const isPlaceholderJSX = React.isValidElement(placeholder);
+
   const getDisplayValue = () => {
-    if (!value) return placeholder;
+    if (!value) return isPlaceholderJSX ? placeholder : placeholder;
     const selectedOption = options.find(opt => (opt.id || opt) === value);
     if (selectedOption && typeof selectedOption === 'object') {
       if (selectedOption.id && selectedOption.label) {
@@ -86,7 +88,9 @@ const ClienteSelect = ({ label, value, onChange, options, placeholder = 'Selecio
         type="button"
       >
         <div className="cliente-select-text-section">
-          <p className="cliente-select-text">{getDisplayValue()}</p>
+          <p className="cliente-select-text">
+            {!value && isPlaceholderJSX ? placeholder : getDisplayValue()}
+          </p>
         </div>
         <div className="cliente-select-icon-section">
           <div className={`cliente-select-arrow ${isOpen ? 'open' : ''}`}></div>

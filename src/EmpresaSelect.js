@@ -39,8 +39,10 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
     setIsOpen(false);
   };
 
+  const isPlaceholderJSX = React.isValidElement(placeholder);
+
   const getDisplayValue = () => {
-    if (!value) return placeholder;
+    if (!value) return isPlaceholderJSX ? placeholder : placeholder;
     const selectedOption = options.find(opt => (opt.id || opt) === value);
     if (selectedOption && typeof selectedOption === 'object') {
       if (selectedOption.id && selectedOption.label) {
@@ -86,7 +88,9 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
         type="button"
       >
         <div className="empresa-select-text-section">
-          <p className="empresa-select-text">{getDisplayValue()}</p>
+          <p className="empresa-select-text">
+            {!value && isPlaceholderJSX ? placeholder : getDisplayValue()}
+          </p>
         </div>
         <div className="empresa-select-icon-section">
           <div className={`empresa-select-arrow ${isOpen ? 'open' : ''}`}></div>

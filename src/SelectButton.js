@@ -39,8 +39,10 @@ const SelectButton = ({ label, value, onChange, options, placeholder = 'Selecion
     setIsOpen(false);
   };
 
+  const isPlaceholderJSX = React.isValidElement(placeholder);
+
   const getDisplayValue = () => {
-    if (!value) return placeholder;
+    if (!value) return isPlaceholderJSX ? placeholder : placeholder;
     if (typeof value === 'string') {
       // Se for string simples, procura na array
       const selectedOption = options.find(opt => opt === value);
@@ -98,7 +100,9 @@ const SelectButton = ({ label, value, onChange, options, placeholder = 'Selecion
         type="button"
       >
         <div className="select-button-text-section">
-          <p className="select-button-text">{getDisplayValue()}</p>
+          <p className="select-button-text">
+            {!value && isPlaceholderJSX ? placeholder : getDisplayValue()}
+          </p>
         </div>
         <div className="select-button-icon-section">
           <div className={`select-button-arrow ${isOpen ? 'open' : ''}`}></div>

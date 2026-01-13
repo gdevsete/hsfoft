@@ -40,7 +40,7 @@ const getEditDistance = (s1, s2) => {
   return costs[s2.length];
 };
 
-const ClienteSelect = ({ label, value, onChange, options, placeholder = 'Selecione...', onOpenChange }) => {
+const ClienteSelect = ({ label, value, onChange, options, placeholder = 'TODOS', onOpenChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isFocused, setIsFocused] = useState(false);

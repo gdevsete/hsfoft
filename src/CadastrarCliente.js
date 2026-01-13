@@ -316,7 +316,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
             value={form.contribuinte}
             onChange={(val) => setForm({ ...form, contribuinte: val })}
             options={contribuinteOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
         </div>
 
@@ -326,7 +326,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
             value={form.regime}
             onChange={(val) => setForm({ ...form, regime: val })}
             options={regimeOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
         </div>
 
@@ -336,7 +336,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
             value={form.status}
             onChange={(val) => setForm({ ...form, status: val })}
             options={statusOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
         </div>
       </div>
@@ -433,7 +433,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
               value={form.cidadeUf}
               onChange={(val) => setForm({ ...form, cidadeUf: val })}
               options={cidadeUfOptions}
-              placeholder="Selecione..."
+              placeholder="TODOS"
             />
           </div>
 
@@ -443,7 +443,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
               value={form.tipo}
               onChange={(val) => setForm({ ...form, tipo: val })}
               options={tipoOptions}
-              placeholder="Selecione..."
+              placeholder="TODOS"
             />
           </div>
         </div>
@@ -725,7 +725,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
                 value={form.tabelaPreco}
                 onChange={(val) => setForm({ ...form, tabelaPreco: val })}
                 options={tabelaPrecOptions}
-                placeholder="Selecione..."
+                placeholder="TODOS"
               />
             </div>
 
@@ -735,7 +735,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
                 value={form.grupo}
                 onChange={(val) => setForm({ ...form, grupo: val })}
                 options={grupoOptions}
-                placeholder="Selecione..."
+                placeholder="TODOS"
               />
             </div>
 
@@ -766,7 +766,7 @@ export default function CadastrarCliente({ onCancel, onSave }) {
                 value={form.rota}
                 onChange={(val) => setForm({ ...form, rota: val })}
                 options={rotaOptions}
-                placeholder="Selecione..."
+                placeholder="TODOS"
               />
             </div>
 

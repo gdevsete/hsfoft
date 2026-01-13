@@ -255,7 +255,7 @@ const ClientesFilter = () => {
             value={filters.estado} 
             onChange={(val) => setFilters({...filters, estado: val})}
             options={estadoOptions}
-            placeholder="Selecione estado..."
+            placeholder="TODOS"
           />
           {hoveredField === 'estado' && filters.estado && (
             <button
@@ -278,7 +278,7 @@ const ClientesFilter = () => {
             value={filters.situacao} 
             onChange={(val) => setFilters({...filters, situacao: val})}
             options={situacaoOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
           {hoveredField === 'situacao' && filters.situacao && (
             <button
@@ -402,7 +402,7 @@ const ClientesFilter = () => {
             value={filters.grupo} 
             onChange={(val) => setFilters({...filters, grupo: val})}
             options={grupoOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
           {hoveredField === 'grupo' && filters.grupo && (
             <button
@@ -425,7 +425,7 @@ const ClientesFilter = () => {
             value={filters.rota} 
             onChange={(val) => setFilters({...filters, rota: val})}
             options={rotaOptions}
-            placeholder="Selecione..."
+            placeholder="TODOS"
           />
           {hoveredField === 'rota' && filters.rota && (
             <button

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './ProspectadorSelect.css';
 
-const ProspectadorSelect = ({ label, value, onChange, options, placeholder = 'Selecione...', onOpenChange }) => {
+const ProspectadorSelect = ({ label, value, onChange, options, placeholder = 'TODOS', onOpenChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 

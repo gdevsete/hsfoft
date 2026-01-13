@@ -804,9 +804,9 @@ export default function CadastrarCliente({ onCancel, onSave }) {
       )}
       {/* Seção Anexos */}
       {activeTab === 'anexos' && (
-        <div className="cc-address-section">
+        <div className="cc-anexos-section">
           <div className="cc-table-container cc-attachments-table">
-            <table className="cc-table">
+            <table className="cc-table anexos-fullwidth-table">
               <colgroup>
                 <col style={{ width: '60%' }} />
                 <col style={{ width: '20%' }} />

@@ -379,6 +379,7 @@ const ClientesFilter = () => {
             onChange={(val) => setFilters({...filters, vendedor: val})}
             options={vendedorOptions}
             placeholder={vendedorPlaceholder}
+            searchable={true}
           />
           {hoveredField === 'vendedor' && filters.vendedor && (
             <button

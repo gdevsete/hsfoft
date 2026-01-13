@@ -78,7 +78,21 @@
   align-items: center;
   justify-content: center;
   font-size: 16px;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.btn-action:hover {
+  background: #008236;
   color: #008236;
+}
+
+.btn-action:hover .btn-icon {
+  filter: brightness(0) invert(1);
 }
 
 .btn-label {

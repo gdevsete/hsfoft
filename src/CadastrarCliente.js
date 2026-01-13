@@ -8,6 +8,8 @@ import hoverIconColor from './icons/hover-icon-color-4.svg';
 import { ReactComponent as CalendarIcon } from './icons/icon-section.svg';
 import { ReactComponent as VectorIcon } from './icons/Vector.svg';
 import pdfIcon from './icons/pdf-simple-file.svg';
+import checkIcon from './icons/check.svg';
+import closeIcon from './icons/close.svg';
 import SelectButton from './SelectButton';
 import ProspectadorSelect from './ProspectadorSelect';
 import TransportadoraSelect from './TransportadoraSelect';
@@ -265,11 +267,11 @@ export default function CadastrarCliente({ onCancel, onSave }) {
         <div className="cc-title">CADASTRAR CLIENTE</div>
         <div className="cc-actions">
           <button className="cc-btn-outline" onClick={onCancel}>
-            <div className="cc-btn-icon">×</div>
+            <img src={closeIcon} alt="Cancelar" className="cc-btn-icon-svg" />
             <div className="cc-btn-label">Cancelar</div>
           </button>
           <button className="cc-btn-outline" onClick={onSave}>
-            <div className="cc-btn-icon">✓</div>
+            <img src={checkIcon} alt="Salvar" className="cc-btn-icon-svg" />
             <div className="cc-btn-label">Salvar</div>
           </button>
         </div>

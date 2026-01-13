@@ -1,5 +1,7 @@
 import React from 'react';
 import './ClientesHeader.css';
+import addBoxIcon from './icons/add-box.svg';
+import printIcon from './icons/print copy.svg';
 
 const ClientesHeader = ({ onAdd }) => {
   return (
@@ -11,11 +13,11 @@ const ClientesHeader = ({ onAdd }) => {
           </div>
           <div className="clientes-actions">
             <button className="btn-action" onClick={() => onAdd && onAdd()}>
-              <div className="btn-icon-plus">+</div>
+              <img src={addBoxIcon} alt="Incluir" className="btn-icon" />
               <div className="btn-label">Incluir</div>
             </button>
             <button className="btn-action">
-              <div className="btn-icon-print">🖨</div>
+              <img src={printIcon} alt="Imprimir" className="btn-icon" />
               <div className="btn-label">Imprimir</div>
             </button>
           </div>

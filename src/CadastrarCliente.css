@@ -125,6 +125,12 @@
   color: #008236;
 }
 
+.cc-btn-icon-svg {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .cc-btn-label {
   flex: 1 1 0;
   text-align: center;
@@ -151,11 +157,8 @@
   color: white;
 }
 
-.cc-btn-outline:hover .cc-btn-label,
-.cc-btn-outline:hover .cc-btn-icon,
-.cc-btn-outline:hover .cc-btn-icon-plus,
-.cc-btn-outline:hover .cc-btn-icon-v {
-  color: white;
+.cc-btn-outline:hover .cc-btn-icon-svg {
+  filter: brightness(0) invert(1);
 }
 
 .cc-divider {
@@ -500,7 +503,7 @@ select.cc-input option {
   align-items: flex-start;
   gap: 10px;
   display: flex;
-  height: 120px; /* fixed height for all tabs to avoid shifting */
+  height: 106px; /* fixed height for all tabs to avoid shifting */
   position: relative; /* allow absolute positioning of add-button inside */
   box-sizing: border-box;
   overflow: visible;
@@ -511,6 +514,7 @@ select.cc-input option {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  margin-top: -5px;
   gap: 10px;
   width: 100%;
   flex-wrap: nowrap;
@@ -520,7 +524,8 @@ select.cc-input option {
 .cc-finance-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  gap: 10px;
+  height: 36px;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -557,15 +562,17 @@ select.cc-input option {
   box-sizing: border-box;
 }
 
-/* New unified complement grid that aligns columns across rows */
+/* Unified complement grid – all inputs same size */
 .cc-complement-grid {
   display: grid;
-  grid-template-columns: 1fr 2fr 0.9fr;
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr); /* TODOS IGUAIS */
+  gap: 10px;
+  margin-top: -6px;
   align-items: start;
   width: 100%;
   box-sizing: border-box;
 }
+
 
 /* First row: Vendedor | Tabela de Preço | Grupo */
 .cc-complement-grid-1 {
@@ -691,12 +698,16 @@ select.cc-input option {
 /* Phone tab grid using fr units to keep consistent spacing */
 .cc-phone-grid {
   display: grid;
-  grid-template-columns: 3fr 1fr 2fr 2fr;
+  grid-template-columns: 3fr 1fr 2fr 2fr; /* NÃO ALTERADO */
   gap: 10px;
   align-items: end;
   width: 100%;
+  height: 98px;  
   box-sizing: border-box;
 }
+
+
+/* Remove margens internas dos campos */
 .cc-phone-grid .cc-field {
   margin: 0;
 }
@@ -726,8 +737,8 @@ select.cc-input option {
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  height: 48px; /* reserve same toolbar height across tabs */
-  margin: 10px 5px; /* space between section and table */
+  height: 28px; /* reserve same toolbar height across tabs */
+  margin: 10px 10px; /* space between section and table */
   box-sizing: border-box;
 }
 
@@ -737,8 +748,8 @@ select.cc-input option {
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  height: 48px; /* reserve same toolbar height across tabs */
-  margin: 10px 5px; /* space between section and table */
+  height: 28px; /* reserve same toolbar height across tabs */
+  margin: 10px 10px; /* space between section and table */
   margin-top: 10px;
   box-sizing: border-box;
 }

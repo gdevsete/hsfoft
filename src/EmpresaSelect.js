@@ -1,9 +1,51 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './EmpresaSelect.css';
 
+// Função para calcular similaridade entre strings (Levenshtein simplificado)
+const calculateSimilarity = (str1, str2) => {
+  const s1 = str1.toLowerCase();
+  const s2 = str2.toLowerCase();
+  
+  if (s1 === s2) return 1;
+  
+  const longer = s1.length > s2.length ? s1 : s2;
+  const shorter = s1.length > s2.length ? s2 : s1;
+  
+  if (longer.length === 0) return 1;
+  
+  const editDistance = getEditDistance(longer, shorter);
+  return (longer.length - editDistance) / longer.length;
+};
+
+const getEditDistance = (s1, s2) => {
+  const costs = [];
+  
+  for (let i = 0; i <= s1.length; i++) {
+    let lastValue = i;
+    for (let j = 0; j <= s2.length; j++) {
+      if (i === 0) {
+        costs[j] = j;
+      } else if (j > 0) {
+        let newValue = costs[j - 1];
+        if (s1.charAt(i - 1) !== s2.charAt(j - 1)) {
+          newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+        }
+        costs[j - 1] = lastValue;
+        lastValue = newValue;
+      }
+    }
+    if (i > 0) costs[s2.length] = lastValue;
+  }
+  
+  return costs[s2.length];
+};
+
 const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecione...', onOpenChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const dropdownRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   // Fechar dropdown quando clicar fora
   useEffect(() => {
@@ -11,6 +53,7 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
         onOpenChange?.(false);
+        setSearchTerm('');
       }
     }
     
@@ -19,6 +62,13 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [isOpen, onOpenChange]);
+
+  // Focus no input de busca quando abre
+  useEffect(() => {
+    if (isOpen && searchInputRef.current) {
+      setTimeout(() => searchInputRef.current?.focus(), 0);
+    }
+  }, [isOpen]);
 
   const handleButtonClick = (e) => {
     e.stopPropagation();
@@ -31,12 +81,15 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
     e.stopPropagation();
     onChange(optionValue);
     setIsOpen(false);
+    setSearchTerm('');
+    setIsFocused(false);
   };
 
   const handleClear = (e) => {
     e.stopPropagation();
     onChange('');
     setIsOpen(false);
+    setSearchTerm('');
   };
 
   const isPlaceholderJSX = React.isValidElement(placeholder);
@@ -53,12 +106,52 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
     return value;
   };
 
+  const filterOptions = (term) => {
+    if (!term) return options;
+    
+    return options.filter(option => {
+      if (typeof option === 'string') {
+        return option.toLowerCase().includes(term.toLowerCase());
+      }
+      
+      const searchStr = `${option.id} ${option.label} ${option.name} ${option.cnpj}`.toLowerCase();
+      return searchStr.includes(term.toLowerCase());
+    });
+  };
+
+  const getSuggestion = (term) => {
+    if (!term || term.length < 2) return null;
+    
+    const filtered = options.filter(option => {
+      if (typeof option === 'string') return false;
+      const searchStr = `${option.id} ${option.label} ${option.name} ${option.cnpj}`.toLowerCase();
+      return !searchStr.includes(term.toLowerCase());
+    });
+
+    let bestMatch = null;
+    let bestSimilarity = 0;
+
+    filtered.forEach(option => {
+      const searchStr = `${option.id} ${option.label} ${option.name} ${option.cnpj}`;
+      const similarity = calculateSimilarity(term, searchStr);
+      
+      if (similarity > bestSimilarity && similarity > 0.4) {
+        bestSimilarity = similarity;
+        bestMatch = option;
+      }
+    });
+
+    return bestMatch;
+  };
+
+  const filteredOptions = filterOptions(searchTerm);
+  const suggestion = searchTerm && filteredOptions.length === 0 ? getSuggestion(searchTerm) : null;
+
   const renderOption = (option) => {
-    // Se for um objeto com render customizado
     if (typeof option === 'object' && option.render) {
       return option.render();
     }
-    // Se for um objeto com dados estruturados (id, label, name, cnpj)
+    
     if (typeof option === 'object' && option.id) {
       return (
         <div className="empresa-select-option-content">
@@ -74,7 +167,7 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
         </div>
       );
     }
-    // Caso simples
+    
     return <span>{option}</span>;
   };
 
@@ -82,20 +175,33 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
     <div className="empresa-select-wrapper" ref={dropdownRef}>
       {label && <label className="empresa-select-label">{label}</label>}
       
-      <button
-        className="empresa-select-field"
-        onClick={handleButtonClick}
-        type="button"
-      >
-        <div className="empresa-select-text-section">
-          <p className="empresa-select-text">
-            {!value && isPlaceholderJSX ? placeholder : getDisplayValue()}
-          </p>
-        </div>
-        <div className="empresa-select-icon-section">
+      <div className="empresa-select-field-container">
+        <input
+          type="text"
+          className="empresa-select-field"
+          placeholder={isFocused ? 'Digite nome, código ou CNPJ...' : (isOpen ? 'Buscar por código, nome, CNPJ...' : '')}
+          value={isFocused || isOpen ? searchTerm : (value ? getDisplayValue() : '')}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+        
+        {!value && !searchTerm && (!isOpen && !isFocused) && (
+          <span className="empresa-select-placeholder-text">
+            <span style={{ color: '#008236', fontWeight: 700 }}>0</span>
+            <span> - TODAS AS EMPRESAS</span>
+          </span>
+        )}
+        
+        <button
+          className="empresa-select-arrow-icon"
+          onClick={handleButtonClick}
+          type="button"
+          title={isOpen ? 'Fechar' : 'Abrir'}
+        >
           <div className={`empresa-select-arrow ${isOpen ? 'open' : ''}`}></div>
-        </div>
-      </button>
+        </button>
+      </div>
 
       {isOpen && (
         <div className="empresa-select-dropdown">
@@ -109,16 +215,37 @@ const EmpresaSelect = ({ label, value, onChange, options, placeholder = 'Selecio
               <span className="clear-text">{getDisplayValue()}</span>
             </button>
           )}
-          {options.map((option, idx) => (
-            <button
-              key={idx}
-              className={`empresa-select-option ${(option.id || option) === value ? 'active' : ''}`}
-              onClick={(e) => handleSelectOption(option.id || option, e)}
-              type="button"
-            >
-              {renderOption(option)}
-            </button>
-          ))}
+
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option, idx) => (
+              <button
+                key={idx}
+                className={`empresa-select-option ${(option.id || option) === value ? 'active' : ''}`}
+                onClick={(e) => handleSelectOption(option.id || option, e)}
+                type="button"
+              >
+                {renderOption(option)}
+              </button>
+            ))
+          ) : suggestion ? (
+            <>
+              <div className="empresa-select-no-results">
+                Nenhum resultado para "{searchTerm}"
+              </div>
+              <button
+                className="empresa-select-suggestion"
+                onClick={(e) => handleSelectOption(suggestion.id, e)}
+                type="button"
+              >
+                <span className="suggestion-text">Você quis dizer:</span>
+                {renderOption(suggestion)}
+              </button>
+            </>
+          ) : (
+            <div className="empresa-select-no-results">
+              Nenhum resultado para "{searchTerm}"
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -16,7 +16,7 @@
   border-radius: 4px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 400px;
+  max-width: 625px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -63,7 +63,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 10px;
   min-height: 120px;
   align-items: center;
   justify-content: center;

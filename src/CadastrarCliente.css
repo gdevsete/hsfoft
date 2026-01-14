@@ -468,8 +468,9 @@ select.cc-input option {
 }
 
 .cc-calendar-svg {
-  width: 26px;
+  width: 30px;
   height: 26px;
+  margin-left: 30px;
   display: block;
   flex: 0 0 26px;
   fill: #0b7a3f; /* stronger green */
@@ -651,7 +652,8 @@ select.cc-input option {
 .cc-complement-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* TODOS IGUAIS */
-  gap: 10px;
+  row-gap: 4px;      /* Espaço entre linhas */
+  column-gap: 10px;    /* Espaço entre colunas (ajuste se quiser) */
   margin-top: -6px;
   align-items: start;
   width: 100%;
@@ -676,7 +678,7 @@ select.cc-input option {
      middle cell (Inscrição Municipal) matches Transportadora width, right cell (Suframa) matches Rota. */
   grid-template-columns: 1fr 2fr 0.9fr;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
 }
 

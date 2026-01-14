@@ -25,15 +25,9 @@ const ConfirmModal = ({ isOpen, title, message, itemInfo, onConfirm, onCancel })
         <div className="modal-footer">
           <button className="modal-btn modal-btn-secondary" onClick={onCancel}>
             <span>Fechar</span>
-            <svg className="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
           </button>
           <button className="modal-btn modal-btn-primary" onClick={onConfirm}>
             <span>OK</span>
-            <svg className="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-            </svg>
           </button>
         </div>
       </div>

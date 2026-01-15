@@ -994,8 +994,7 @@ const ContasAReceber = () => {
               </div>
               <div className="car-td car-td-cliente">
                 <span style={{ 
-                  color: row.status === 'vencido' ? '#C10007' : row.status === 'avencer' ? '#A65F00' : '#404040', 
-                  fontWeight: 700 
+                  color: row.status === 'vencido' ? '#C10007' : row.status === 'avencer' ? '#A65F00' : '#404040'
                 }}>{clienteInfo.codigo} - {clienteInfo.nome}</span>
               </div>
               <div className="car-td car-td-emp">{row.emp}</div>
@@ -1010,8 +1009,7 @@ const ContasAReceber = () => {
               <div className="car-td car-td-total">
                 <div className="car-total-cell">
                   <span style={{ 
-                    color: row.status === 'vencido' ? '#C10007' : row.status === 'avencer' ? '#A65F00' : '#404040',
-                    fontWeight: 700
+                    color: row.status === 'vencido' ? '#C10007' : row.status === 'avencer' ? '#A65F00' : '#404040'
                   }}>{row.total}</span>
                   <div className="car-hover-icons-container">
                     <button className="car-btn-icon-action" title="Opções">

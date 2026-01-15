@@ -868,6 +868,7 @@
   height: 20px;
   display: block;
   transition: filter 0.2s ease;
+  filter: brightness(0.6) saturate(0%);
 }
 
 .car-table-row:hover .car-btn-icon-action:hover img {

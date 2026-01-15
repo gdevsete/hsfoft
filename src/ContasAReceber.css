@@ -341,8 +341,8 @@
 
 .car-radio-circle::after {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: transparent;
   transition: background 0.2s ease;
@@ -409,18 +409,31 @@
   width: 14px;
   height: 14px;
   cursor: pointer;
-  accent-color: #ea580c;
-  appearance: none;
-  -webkit-appearance: none;
-  border: 1px solid #D4D4D4;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: 2px solid #D4D4D4;
   border-radius: 2px;
-  background: white;
+  background: white !important;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .car-checkbox:checked {
-  background: #ea580c;
-  border-color: #ea580c;
+  background: white !important;
+  border-color: #ea580c !important;
+}
+
+.car-checkbox:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 3px;
+  border-left: 2px solid #ea580c;
+  border-bottom: 2px solid #ea580c;
+  transform: translate(-50%, -60%) rotate(-45deg);
 }
 
 .car-total-label {

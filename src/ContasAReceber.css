@@ -273,6 +273,7 @@
 .car-field-icon {
   position: absolute;
   right: 7px;
+  top: 14px;
   width: 10px;
   height: 6px;
   pointer-events: none;

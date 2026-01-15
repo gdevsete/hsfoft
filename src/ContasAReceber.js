@@ -16,11 +16,13 @@ import fileCopyIcon from './icons/icons-contas-a-receber/file-copy.svg';
 import tableHoverShareIcon from './icons/icons-contas-a-receber/table-hover-share.svg';
 import tableHoverOptionsIcon from './icons/icons-contas-a-receber/table-hover-options.svg';
 import tableHoverOptionsCopyIcon from './icons/icons-contas-a-receber/table-hover-options copy.svg';
+import Toast from './Toast';
 
 const ContasAReceber = () => {
   const [selectedRows, setSelectedRows] = useState(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedParcelaData, setSelectedParcelaData] = useState(null);
+  const [showCopyToast, setShowCopyToast] = useState(false);
   const [filters] = useState({
     cliente: '2033 - NEXTGEN SYSTEMS BRASIL LTDA - 789.654.321/0001-88',
     periodo: '31/12/2010 até 31/10/2020',
@@ -40,6 +42,18 @@ const ContasAReceber = () => {
     aVencer: 'R$ 123,45',
     capital: 'R$ 123,45',
   });
+
+  const handleCopyBarcode = () => {
+    // Copiar código de barras para clipboard
+    const barcodeText = '123456789012345678901234567890';
+    navigator.clipboard.writeText(barcodeText).then(() => {
+      setShowCopyToast(true);
+    });
+  };
+
+  const handleCloseToast = () => {
+    setShowCopyToast(false);
+  };
 
   const [tableData] = useState([
     {
@@ -1463,8 +1477,8 @@ const ContasAReceber = () => {
                     }}>
                       <img src={tableHoverOptionsIcon} alt="Visualizar" />
                     </button>
-                    <button className="car-btn-icon-action" title="Duplicar">
-                      <img src={fileCopyIcon} alt="Duplicar" />
+                    <button className="car-btn-icon-action" title="Copiar" onClick={handleCopyBarcode}>
+                      <img src={fileCopyIcon} alt="Copiar" />
                     </button>
                     <button className="car-btn-icon-action" title="Compartilhar">
                       <img src={tableHoverShareIcon} alt="Compartilhar" />
@@ -1485,6 +1499,12 @@ const ContasAReceber = () => {
       isOpen={isModalOpen} 
       onClose={() => setIsModalOpen(false)} 
       parcelaData={selectedParcelaData}
+    />
+    <Toast
+      isVisible={showCopyToast}
+      message="Código de barras copiado com sucesso!"
+      duration={3000}
+      onClose={handleCloseToast}
     />
   </>
   );

@@ -21,7 +21,7 @@ const ContasAReceber = () => {
   const [selectedRows, setSelectedRows] = useState(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedParcelaData, setSelectedParcelaData] = useState(null);
-  const [filters, setFilters] = useState({
+  const [filters] = useState({
     cliente: '2033 - NEXTGEN SYSTEMS BRASIL LTDA - 789.654.321/0001-88',
     periodo: '31/12/2010 até 31/10/2020',
     tipoData: 'VENCIMENTO',
@@ -34,7 +34,7 @@ const ContasAReceber = () => {
     situacao: 'Abertas',
   });
 
-  const [totals, setTotals] = useState({
+  const [totals] = useState({
     selecionados: 'R$ 123,45',
     vencidos: 'R$ 123,45',
     aVencer: 'R$ 123,45',

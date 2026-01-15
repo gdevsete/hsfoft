@@ -131,28 +131,31 @@
 
 .vp-info-hover-icons-container {
   position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 24px;
+  width: auto;
   display: none;
-  gap: 12px;
+  gap: 6px;
   z-index: 50;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 30%, white 60%);
-  padding: 0 8px;
-  border-radius: 0;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: 4px;
   align-items: center;
   justify-content: flex-end;
+  transition: background 0.2s ease;
 }
 
 .vp-info-data-row:hover .vp-info-hover-icons-container {
   display: flex;
+  background: linear-gradient(90deg, rgba(255, 247, 237, 0.00) 0%, #FFF7ED 50%);
 }
 
 .vp-info-btn-icon-action {
-  width: 25px;
-  height: 25px;
-  padding: 4px;
+  width: 27px;
+  height: 27px;
+  padding: 3px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -164,17 +167,13 @@
   flex-shrink: 0;
 }
 
-.vp-info-btn-icon-action:hover {
-  background: #FFF7ED;
-}
-
 .vp-info-btn-icon-action:hover img {
   filter: invert(36%) sepia(100%) saturate(500%) hue-rotate(360deg) brightness(105%);
 }
 
 .vp-info-btn-icon-action img {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: block;
   transition: filter 0.2s ease;
 }

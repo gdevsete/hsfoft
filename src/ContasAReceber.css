@@ -547,7 +547,7 @@
 }
 
 .car-table-row:hover {
-  background: #fce5d5;
+  background: rgba(234, 90, 12, 0);
 }
 
 .car-th {
@@ -600,7 +600,7 @@
 }
 
 .car-table-row:hover .car-td {
-  background: #fce5d5;
+  background: rgba(234, 88, 12, 0.05);
 }
 
 .car-td:first-child {
@@ -791,7 +791,7 @@
   right: 7px;
   top: 0;
   position: absolute;
-  background: linear-gradient(90deg, rgba(252, 229, 213, 0.753) 0%, #fce5d5 100%);
+  background: linear-gradient(90deg, rgb(253 253 253 / 50%) 0%, rgb(255 255 255) 100%);
   overflow: visible;
   justify-content: flex-end;
   align-items: center;
@@ -858,10 +858,20 @@
   opacity: 1;
 }
 
+.car-table-row:hover .car-btn-icon-action:hover {
+  background: var(--gradients-financeiro-hover-secondary, linear-gradient(180deg, rgba(255, 247, 237, 0.00) 0%, var(--Financeiro-bg-hover, #FFF7ED) 50%));
+  border-radius: 4px;
+}
+
 .car-btn-icon-action img {
   width: 20px;
   height: 20px;
   display: block;
+  transition: filter 0.2s ease;
+}
+
+.car-table-row:hover .car-btn-icon-action:hover img {
+  filter: invert(36%) sepia(100%) saturate(500%) hue-rotate(360deg) brightness(105%);
 }
 
 /* STATUS DAS LINHAS */

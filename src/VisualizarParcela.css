@@ -592,7 +592,7 @@
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  wargince: nowrap;
+  white-space: nowrap;
 }
 
 .vp-parcelas-cell:last-child {

@@ -775,23 +775,21 @@
 .car-hover-icons-container {
   width: 160px;
   height: 100%;
-  right: 15px;
+  right: 7px;
   top: 0;
   position: absolute;
   background: linear-gradient(90deg, rgba(252, 229, 213, 0.753) 0%, #fce5d5 100%);
   overflow: visible;
   justify-content: flex-end;
   align-items: center;
-  display: inline-flex;
+  display: none;
   z-index: 50;
   gap: 10px;
   padding-right: 8px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
 }
 
 .car-table-row:hover .car-hover-icons-container {
-  opacity: 1;
+  display: inline-flex;
 }
 
 .car-checkbox {

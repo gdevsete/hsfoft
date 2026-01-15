@@ -1,7 +1,7 @@
 import React from 'react';
 import './DropdownMenu.css';
 
-const DropdownMenu = ({ isVisible, onMouseEnter, onMouseLeave, type = 'cadastros' }) => {
+const DropdownMenu = ({ isVisible, onMouseEnter, onMouseLeave, type = 'cadastros', onNavigateToContasAReceber }) => {
   const menuDataMap = {
     cadastros: [
       {
@@ -91,7 +91,16 @@ const DropdownMenu = ({ isVisible, onMouseEnter, onMouseLeave, type = 'cadastros
             </div>
             <div className="dropdown-section-items">
               {section.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="dropdown-item">
+                <div 
+                  key={itemIndex} 
+                  className="dropdown-item"
+                  onClick={() => {
+                    if (item === 'Contas a Receber' && onNavigateToContasAReceber) {
+                      onNavigateToContasAReceber();
+                    }
+                  }}
+                  style={{ cursor: item === 'Contas a Receber' ? 'pointer' : 'default' }}
+                >
                   <div className="dropdown-item-text">{item}</div>
                 </div>
               ))}

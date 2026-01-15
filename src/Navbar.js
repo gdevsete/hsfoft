@@ -13,7 +13,7 @@ import questionIcon from './icons/menu-btn-side-question.svg';
 import gearIcon from './icons/menu-btn-side-gear-six.svg';
 import userAvatar from './icons/Ellipse 1.svg';
 
-const Navbar = () => {
+const Navbar = ({ onNavigateToContasAReceber }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeMenu, setActiveMenu] = useState('');
 
@@ -25,6 +25,12 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     setShowDropdown(false);
     setActiveMenu('');
+  };
+
+  const handleContasAReceberClick = () => {
+    if (onNavigateToContasAReceber) {
+      onNavigateToContasAReceber();
+    }
   };
 
   return (
@@ -118,6 +124,7 @@ const Navbar = () => {
         type={activeMenu}
         onMouseEnter={() => handleMouseEnter(activeMenu)}
         onMouseLeave={handleMouseLeave}
+        onNavigateToContasAReceber={handleContasAReceberClick}
       />
     </div>
   );

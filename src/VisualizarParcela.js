@@ -492,14 +492,14 @@ const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
               <button className="vp-info-btn-icon-action" title="Visualizar">
                 <img src={tableHoverOptionsIcon} alt="Visualizar" />
               </button>
-              <button className="vp-info-btn-icon-action" title="Duplicar">
-                <img src={fileCopyIcon} alt="Duplicar" />
+              <button className="vp-info-btn-icon-action" title="Copiar">
+                <img src={fileCopyIcon} alt="Copiar" />
               </button>
               <button className="vp-info-btn-icon-action" title="Compartilhar">
                 <img src={tableHoverShareIcon} alt="Compartilhar" />
               </button>
-              <button className="vp-info-btn-icon-action" title="Mais">
-                <img src={tableHoverOptionsCopyIcon} alt="Mais" />
+              <button className="vp-info-btn-icon-action" title="Impressao">
+                <img src={tableHoverOptionsCopyIcon} alt="Impressao" />
               </button>
             </div>
           </div>

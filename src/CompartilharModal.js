@@ -3,10 +3,15 @@ import './CompartilharModal.css';
 
 const CompartilharModal = ({ isOpen, onClose, documentCount = 17 }) => {
   const [tab, setTab] = useState('email');
-  const [recipients, setRecipients] = useState([
+  const [emailRecipients, setEmailRecipients] = useState([
     'compras@allnote.com.br',
     'nilton.silva@allnote.com.br',
     'financeiro@allnote.com.br'
+  ]);
+  const [phoneRecipients, setPhoneRecipients] = useState([
+    '(63) 98454-3808',
+    '(63) 91234-5678',
+    '(63) 98765-432'
   ]);
   const [newRecipient, setNewRecipient] = useState('');
   const [subject, setSubject] = useState('CONTAS A PAGAR 2025');
@@ -21,15 +26,30 @@ const CompartilharModal = ({ isOpen, onClose, documentCount = 17 }) => {
   if (!isOpen) return null;
 
   const handleRemoveRecipient = (index) => {
-    setRecipients(recipients.filter((_, i) => i !== index));
+    if (tab === 'email') {
+      setEmailRecipients(emailRecipients.filter((_, i) => i !== index));
+    } else {
+      setPhoneRecipients(phoneRecipients.filter((_, i) => i !== index));
+    }
   };
 
   const handleAddRecipient = () => {
-    if (newRecipient.trim() && !recipients.includes(newRecipient)) {
-      setRecipients([...recipients, newRecipient]);
-      setNewRecipient('');
+    if (newRecipient.trim()) {
+      if (tab === 'email') {
+        if (!emailRecipients.includes(newRecipient)) {
+          setEmailRecipients([...emailRecipients, newRecipient]);
+          setNewRecipient('');
+        }
+      } else {
+        if (!phoneRecipients.includes(newRecipient)) {
+          setPhoneRecipients([...phoneRecipients, newRecipient]);
+          setNewRecipient('');
+        }
+      }
     }
   };
+
+  const currentRecipients = tab === 'email' ? emailRecipients : phoneRecipients;
 
   const handleFileChange = (file) => {
     setSelectedFiles({
@@ -76,7 +96,7 @@ const CompartilharModal = ({ isOpen, onClose, documentCount = 17 }) => {
           <div className="cm-section">
             <label className="cm-label">Destinatário</label>
             <div className="cm-recipients">
-              {recipients.map((recipient, index) => (
+              {currentRecipients.map((recipient, index) => (
                 <div key={index} className="cm-recipient-tag">
                   {recipient}
                   <button
@@ -90,7 +110,7 @@ const CompartilharModal = ({ isOpen, onClose, documentCount = 17 }) => {
               <input
                 type="text"
                 className="cm-recipient-input"
-                placeholder="Adicionar e-mail"
+                placeholder={tab === 'email' ? 'Adicionar e-mail' : 'Adicionar telefone'}
                 value={newRecipient}
                 onChange={(e) => setNewRecipient(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleAddRecipient()}
@@ -151,48 +171,44 @@ const CompartilharModal = ({ isOpen, onClose, documentCount = 17 }) => {
               onChange={(e) => setMessage(e.target.value)}
             />
           </div>
-
-          {/* Checkboxes */}
-          <div className="cm-section">
-            <div className="cm-checkboxes">
-              <label className="cm-checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={selectedFiles.boleto}
-                  onChange={() => handleFileChange('boleto')}
-                />
-                Boleto
-              </label>
-              <label className="cm-checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={selectedFiles.pedido}
-                  onChange={() => handleFileChange('pedido')}
-                />
-                Pedido
-              </label>
-              <label className="cm-checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={selectedFiles.notaPdf}
-                  onChange={() => handleFileChange('notaPdf')}
-                />
-                Nota (PDF)
-              </label>
-              <label className="cm-checkbox-label">
-                <input
-                  type="checkbox"
-                  checked={selectedFiles.notaXml}
-                  onChange={() => handleFileChange('notaXml')}
-                />
-                Nota (XML)
-              </label>
-            </div>
-          </div>
         </div>
 
         {/* Footer */}
         <div className="cm-footer">
+          <div className="cm-checkboxes">
+            <label className="cm-checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedFiles.boleto}
+                onChange={() => handleFileChange('boleto')}
+              />
+              Boleto
+            </label>
+            <label className="cm-checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedFiles.pedido}
+                onChange={() => handleFileChange('pedido')}
+              />
+              Pedido
+            </label>
+            <label className="cm-checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedFiles.notaPdf}
+                onChange={() => handleFileChange('notaPdf')}
+              />
+              Nota (PDF)
+            </label>
+            <label className="cm-checkbox-label">
+              <input
+                type="checkbox"
+                checked={selectedFiles.notaXml}
+                onChange={() => handleFileChange('notaXml')}
+              />
+              Nota (XML)
+            </label>
+          </div>
           <button className="cm-btn-enviar" onClick={onClose}>
             Enviar
           </button>

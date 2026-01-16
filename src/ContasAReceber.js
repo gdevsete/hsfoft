@@ -17,6 +17,7 @@ import tableHoverShareIcon from './icons/icons-contas-a-receber/table-hover-shar
 import tableHoverOptionsIcon from './icons/icons-contas-a-receber/table-hover-options.svg';
 import Toast from './Toast';
 import ImpressaoModal from './ImpressaoModal';
+import CompartilharModal from './CompartilharModal';
 
 const ContasAReceber = () => {
   const [selectedRows, setSelectedRows] = useState(new Set());
@@ -24,6 +25,7 @@ const ContasAReceber = () => {
   const [selectedParcelaData, setSelectedParcelaData] = useState(null);
   const [showCopyToast, setShowCopyToast] = useState(false);
   const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [filters] = useState({
     cliente: '2033 - NEXTGEN SYSTEMS BRASIL LTDA - 789.654.321/0001-88',
     periodo: '31/12/2010 até 31/10/2020',
@@ -1484,7 +1486,7 @@ const ContasAReceber = () => {
                     <button className="car-btn-icon-action" title="Impressão" onClick={() => setIsPrintModalOpen(true)}>
                       <img src={printIcon} alt="Impressão" />
                     </button>
-                    <button className="car-btn-icon-action" title="Compartilhar">
+                    <button className="car-btn-icon-action" title="Compartilhar" onClick={() => setIsShareModalOpen(true)}>
                       <img src={tableHoverShareIcon} alt="Compartilhar" />
                     </button>
                   </div>
@@ -1504,6 +1506,11 @@ const ContasAReceber = () => {
     <ImpressaoModal
       isOpen={isPrintModalOpen}
       onClose={() => setIsPrintModalOpen(false)}
+    />
+    <CompartilharModal
+      isOpen={isShareModalOpen}
+      onClose={() => setIsShareModalOpen(false)}
+      documentCount={17}
     />
     <Toast
       isVisible={showCopyToast}

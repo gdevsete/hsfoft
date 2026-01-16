@@ -15,8 +15,9 @@
   background: white;
   border-radius: 4px;
   width: 95%;
-  max-width: 625px;
-  max-height: 90vh;
+  max-width: 900px;
+  height: auto;
+  max-height: 70vh;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -229,7 +230,7 @@
 
 .cm-textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 80px;
   padding: 10px;
   border: 1px solid #D4D4D4;
   border-radius: 0 0 4px 4px;
@@ -265,10 +266,30 @@
 }
 
 .cm-checkbox-label input[type="checkbox"] {
+  appearance: none;
   width: 16px;
   height: 16px;
   cursor: pointer;
-  accent-color: #EA580C;
+  border: 1px solid #D4D4D4;
+  border-radius: 2px;
+  background: white;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cm-checkbox-label input[type="checkbox"]:checked {
+  background: #EA580C;
+  border-color: #EA580C;
+}
+
+.cm-checkbox-label input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .cm-footer {

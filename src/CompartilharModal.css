@@ -30,7 +30,7 @@
   align-items: center;
   height: 50px;
   padding: 0 20px;
-  border-bottom: 1px solid #D4D4D4;
+  border-bottom: 2px solid #EA580C;
   background: white;
   flex-shrink: 0;
 }
@@ -66,6 +66,11 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  scrollbar-width: none;
+}
+
+.cm-content::-webkit-scrollbar {
+  display: none;
 }
 
 .cm-doc-count {
@@ -135,11 +140,16 @@
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
-  background: white;
+  background: #FFF7ED;
   border: 1px solid #D4D4D4;
   border-radius: 4px;
   font-size: 12px;
   color: #404040;
+  transition: all 0.2s ease;
+}
+
+.cm-recipient-tag:hover {
+  border-color: #EA580C;
 }
 
 .cm-tag-remove {
@@ -230,7 +240,7 @@
 
 .cm-textarea {
   width: 100%;
-  min-height: 80px;
+  min-height: 200px;
   padding: 10px;
   border: 1px solid #D4D4D4;
   border-radius: 0 0 4px 4px;
@@ -252,6 +262,7 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .cm-checkbox-label {
@@ -266,39 +277,45 @@
 }
 
 .cm-checkbox-label input[type="checkbox"] {
-  appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   cursor: pointer;
-  border: 1px solid #D4D4D4;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: 2px solid #D4D4D4;
   border-radius: 2px;
-  background: white;
+  background: white !important;
   transition: all 0.2s ease;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cm-checkbox-label input[type="checkbox"]:checked {
-  background: #EA580C;
-  border-color: #EA580C;
+  background: white !important;
+  border-color: #ea580c !important;
 }
 
-.cm-checkbox-label input[type="checkbox"]:checked::after {
-  content: '✓';
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
+.cm-checkbox-label input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 3px;
+  border-left: 2px solid #ea580c;
+  border-bottom: 2px solid #ea580c;
+  transform: translate(-50%, -55%) rotate(-45deg);
 }
 
 .cm-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   padding: 15px 20px;
   background: #FAFAFA;
-  border-top: 1px solid #D4D4D4;
+  border-top: 1px solid #EA580C;
   flex-shrink: 0;
+  gap: 20px;
 }
 
 .cm-btn-enviar {
@@ -321,21 +338,4 @@
 
 .cm-btn-enviar:active {
   opacity: 0.9;
-}
-
-.cm-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.cm-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.cm-content::-webkit-scrollbar-thumb {
-  background: #CCCCCC;
-  border-radius: 4px;
-}
-
-.cm-content::-webkit-scrollbar-thumb:hover {
-  background: #999999;
 }

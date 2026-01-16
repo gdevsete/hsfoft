@@ -256,8 +256,9 @@
 .cm-checkboxes {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .cm-checkbox-label {
@@ -311,6 +312,9 @@
   border-top: 1px solid #D4D4D4;
   flex-shrink: 0;
   gap: 20px;
+  flex-wrap: nowrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cm-btn-enviar {
@@ -324,6 +328,8 @@
   font-family: 'Inter', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .cm-btn-enviar:hover {

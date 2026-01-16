@@ -15,7 +15,6 @@ import trashIcon from './icons/icons-contas-a-receber/trash.svg';
 import fileCopyIcon from './icons/icons-contas-a-receber/file-copy.svg';
 import tableHoverShareIcon from './icons/icons-contas-a-receber/table-hover-share.svg';
 import tableHoverOptionsIcon from './icons/icons-contas-a-receber/table-hover-options.svg';
-import tableHoverOptionsCopyIcon from './icons/icons-contas-a-receber/table-hover-options copy.svg';
 import Toast from './Toast';
 import ImpressaoModal from './ImpressaoModal';
 

@@ -10,17 +10,20 @@ import tableHoverShareIcon from './icons/icons-contas-a-receber/table-hover-shar
 import tableHoverOptionsCopyIcon from './icons/icons-contas-a-receber/table-hover-options copy.svg';
 
 const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
+  const [selectedEmpresas, setSelectedEmpresas] = React.useState({
+    todas: true,
+    empresa1: false,
+    empresa2: false,
+    empresa3: false
+  });
+
   if (!isOpen || !parcelaData) return null;
 
   const {
     cliente = '1652 - WEB PALMAS PAPELARIA E INFORMATICA - 10.552.934/0001-90',
-    empresa = '2 - TECHSOLUTIONS DISTRIBUIDORA LTDA - 08.765.432/0001-55',
-    vendedor = '134 - Rodrigo dos Santos Melo Ribeiro',
-    caixa = '172 - Laryssa Carvalho Lopes',
-    dataOrcamento = '05/10/2022',
-    dataVenda = '08/10/2022',
-    condicao = '30/60/90/120',
-    totalVenda = 'R$ 6.957,22',
+    vendedor = '3 - JOAO SILVA MEIDEIRO - 325.878.002-77',
+    pedido = '12345678',
+    dataVenda = '10/10/2010',
     parcelas = [
       {
         par: '01/05',
@@ -458,97 +461,113 @@ const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
           </button>
         </div>
 
-        {/* Info Table Header */}
-        <div className="vp-info-section">
-          <div className="vp-info-header-row">
-            <div className="vp-info-header-cell">Cliente</div>
-            <div className="vp-info-header-cell">Emp</div>
-            <div className="vp-info-header-cell">Pedido</div>
-            <div className="vp-info-header-cell">Nota</div>
-            <div className="vp-info-header-cell">Par</div>
-            <div className="vp-info-header-cell">Vencimento</div>
-            <div className="vp-info-header-cell">Valor</div>
-            <div className="vp-info-header-cell">Dias</div>
-            <div className="vp-info-header-cell">Multa</div>
-            <div className="vp-info-header-cell">Juros</div>
-            <div className="vp-info-header-cell">Total</div>
+        {/* Empresas Section */}
+        <div className="vp-empresas-section">
+          <div className="vp-empresas-header">
+            <div className="vp-empresas-header-cell vp-checkbox-col"></div>
+            <div className="vp-empresas-header-cell">Empresas</div>
+            <div className="vp-empresas-header-cell">Nota Fiscal</div>
+            <div className="vp-empresas-header-cell">Condição</div>
+            <div className="vp-empresas-header-cell">Total</div>
           </div>
-          
-          <div className="vp-info-data-row">
-            <div className="vp-info-data-cell">15 - SOLUCAO TI ASSISTENCIA TECNICA E INFRMATICA LTDA - 123.123.123/0001-23</div>
-            <div className="vp-info-data-cell">2</div>
-            <div className="vp-info-data-cell">0.000.000.2025</div>
-            <div className="vp-info-data-cell">567</div>
-            <div className="vp-info-data-cell">10</div>
-            <div className="vp-info-data-cell">04/11/2022</div>
-            <div className="vp-info-data-cell">1.238,92</div>
-            <div className="vp-info-data-cell">30</div>
-            <div className="vp-info-data-cell">32,50</div>
-            <div className="vp-info-data-cell">12,10</div>
-            <div className="vp-info-data-cell">
-              1.000.522,10
+
+          <div className="vp-empresas-row">
+            <div className="vp-empresas-cell vp-checkbox-col">
+              <input 
+                type="checkbox" 
+                checked={selectedEmpresas.todas}
+                onChange={(e) => setSelectedEmpresas({todas: e.target.checked, empresa1: e.target.checked, empresa2: e.target.checked, empresa3: e.target.checked})}
+                className="vp-checkbox"
+              />
             </div>
-            <div className="vp-info-hover-icons-container">
-              <button className="vp-info-btn-icon-action" title="Visualizar">
-                <img src={tableHoverOptionsIcon} alt="Visualizar" />
-              </button>
-              <button className="vp-info-btn-icon-action" title="Copiar">
-                <img src={fileCopyIcon} alt="Copiar" />
-              </button>
-              <button className="vp-info-btn-icon-action" title="Compartilhar">
-                <img src={tableHoverShareIcon} alt="Compartilhar" />
-              </button>
-              <button className="vp-info-btn-icon-action" title="Impressao">
-                <img src={tableHoverOptionsCopyIcon} alt="Impressao" />
-              </button>
+            <div className="vp-empresas-cell">0 - TODAS AS EMPRESAS</div>
+            <div className="vp-empresas-cell"></div>
+            <div className="vp-empresas-cell"></div>
+            <div className="vp-empresas-cell">161.267,41</div>
+          </div>
+
+          <div className="vp-empresas-row">
+            <div className="vp-empresas-cell vp-checkbox-col">
+              <input 
+                type="checkbox" 
+                checked={selectedEmpresas.empresa1}
+                onChange={(e) => setSelectedEmpresas({...selectedEmpresas, empresa1: e.target.checked})}
+                className="vp-checkbox"
+              />
             </div>
+            <div className="vp-empresas-cell">1 - SOLUCAO TI COMERCIO DE EQUIPAMENTO DE INFORMATICA - 11.882.936/0001-00</div>
+            <div className="vp-empresas-cell">78.102</div>
+            <div className="vp-empresas-cell">4 x</div>
+            <div className="vp-empresas-cell">161.267,41</div>
+          </div>
+
+          <div className="vp-empresas-row">
+            <div className="vp-empresas-cell vp-checkbox-col">
+              <input 
+                type="checkbox" 
+                checked={selectedEmpresas.empresa2}
+                onChange={(e) => setSelectedEmpresas({...selectedEmpresas, empresa2: e.target.checked})}
+                className="vp-checkbox"
+              />
+            </div>
+            <div className="vp-empresas-cell">2 - SOLUCAO TI ASSISTENCIA TECNICA EM INFORMATICA LTDA - 11.882.936/0001-00</div>
+            <div className="vp-empresas-cell">25.200</div>
+            <div className="vp-empresas-cell">4 x</div>
+            <div className="vp-empresas-cell">161.267,41</div>
+          </div>
+
+          <div className="vp-empresas-row">
+            <div className="vp-empresas-cell vp-checkbox-col">
+              <input 
+                type="checkbox" 
+                checked={selectedEmpresas.empresa3}
+                onChange={(e) => setSelectedEmpresas({...selectedEmpresas, empresa3: e.target.checked})}
+                className="vp-checkbox"
+              />
+            </div>
+            <div className="vp-empresas-cell">3 - SONHO MEU COMERCIO DE CALCADOS E DERIVADOS - 11.882.936/0001-00</div>
+            <div className="vp-empresas-cell">90.358</div>
+            <div className="vp-empresas-cell">4 x</div>
+            <div className="vp-empresas-cell">161.267,41</div>
           </div>
         </div>
 
-        {/* Details Section */}
-        <div className="vp-details-section">
-          <div className="vp-details-row">
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Cliente:</label>
-              <p className="vp-detail-value">{cliente}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Vendedor:</label>
-              <p className="vp-detail-value">{vendedor}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Data Orçamento:</label>
-              <p className="vp-detail-value">{dataOrcamento}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Condição:</label>
-              <p className="vp-detail-value">{condicao}</p>
+        {/* Details Section - Simplified */}
+        <div className="vp-details-section-simple">
+          <div className="vp-detail-item">
+            <label className="vp-detail-label">Cliente:</label>
+            <p className="vp-detail-value">{cliente}</p>
+          </div>
+          <div className="vp-detail-item">
+            <label className="vp-detail-label">Vendedor</label>
+            <p className="vp-detail-value">{vendedor}</p>
+          </div>
+          <div className="vp-detail-item">
+            <label className="vp-detail-label">Pedido</label>
+            <div className="vp-pedido-container">
+              <p className="vp-detail-value">{pedido}</p>
+              <button className="vp-search-btn" title="Buscar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </button>
             </div>
           </div>
-
-          <div className="vp-details-row">
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Empresa</label>
-              <p className="vp-detail-value">{empresa}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Caixa:</label>
-              <p className="vp-detail-value">{caixa}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Data Venda:</label>
-              <p className="vp-detail-value">{dataVenda}</p>
-            </div>
-            <div className="vp-detail-group">
-              <label className="vp-detail-label">Total da Venda:</label>
-              <p className="vp-detail-value">{totalVenda}</p>
-            </div>
+          <div className="vp-detail-item">
+            <label className="vp-detail-label">Data Venda</label>
+            <p className="vp-detail-value">{dataVenda}</p>
           </div>
+          <button className="vp-anexos-btn">
+            <img src={attachIcon} alt="Anexos" />
+            <span>Anexos</span>
+          </button>
         </div>
 
         {/* Main Parcelas Table */}
         <div className="vp-parcelas-table-wrapper">
           <div className="vp-parcelas-header">
+            <div className="vp-parcelas-header-cell">Emp</div>
             <div className="vp-parcelas-header-cell">Par</div>
             <div className="vp-parcelas-header-cell">Vencimento</div>
             <div className="vp-parcelas-header-cell">Valor</div>
@@ -564,6 +583,7 @@ const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
           <div className="vp-parcelas-body">
             {parcelas.map((parcela, index) => (
               <div key={index} className="vp-parcelas-row">
+                <div className="vp-parcelas-cell">1</div>
                 <div className="vp-parcelas-cell">{parcela.par}</div>
                 <div className="vp-parcelas-cell">{parcela.vencimento}</div>
                 <div className="vp-parcelas-cell">{parcela.valor}</div>

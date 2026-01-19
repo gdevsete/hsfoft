@@ -1,13 +1,6 @@
 import React from 'react';
 import './VisualizarParcela.css';
-import orcamentoIcon from './icons/icons-contas-a-receber/note-alt.svg';
-import receiptIcon from './icons/icons-contas-a-receber/receipt-long.svg';
-import docsIcon from './icons/icons-contas-a-receber/docs.svg';
 import attachIcon from './icons/icons-contas-a-receber/attach-file.svg';
-import tableHoverOptionsIcon from './icons/icons-contas-a-receber/table-hover-options.svg';
-import fileCopyIcon from './icons/icons-contas-a-receber/file-copy.svg';
-import tableHoverShareIcon from './icons/icons-contas-a-receber/table-hover-share.svg';
-import tableHoverOptionsCopyIcon from './icons/icons-contas-a-receber/table-hover-options copy.svg';
 
 const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
   const [selectedEmpresas, setSelectedEmpresas] = React.useState({
@@ -597,26 +590,6 @@ const VisualizarParcela = ({ isOpen, onClose, parcelaData }) => {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="vp-footer">
-          <button className="vp-action-btn">
-            <img src={orcamentoIcon} alt="Orçamento" />
-            Orçamento
-          </button>
-          <button className="vp-action-btn">
-            <img src={receiptIcon} alt="Pedido" />
-            Pedido
-          </button>
-          <button className="vp-action-btn">
-            <img src={docsIcon} alt="Nota" />
-            Nota
-          </button>
-          <button className="vp-action-btn">
-            <img src={attachIcon} alt="Anexos" />
-            Anexos
-          </button>
         </div>
       </div>
     </div>

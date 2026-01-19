@@ -545,53 +545,7 @@
 
 /* Footer */
 .vp-footer {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  background: white;
-  border-top: 1px solid #D4D4D4;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.vp-action-btn {
-  width: 110px;
-  height: 28px;
-  padding: 0 10px;
-  background: white;
-  border: 1.5px solid #EA580C;
-  border-radius: 4px;
-  color: #EA580C;
-  font-size: 12px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  line-height: 16px;
-  letter-spacing: 0.24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-
-.vp-action-btn img {
-  width: 20px;
-  height: 20px;
-  filter: invert(36%) sepia(80%) saturate(2000%) hue-rotate(4deg) brightness(103%) contrast(107%);
-}
-
-.vp-action-btn:hover {
-  background: #EA580C;
-  color: white;
-}
-
-.vp-action-btn:hover img {
-  filter: brightness(0) invert(1);
-}
-
-.vp-action-btn:active {
-  opacity: 0.8;
+  display: none;
 }
 
 /* Scrollbar Styling */
@@ -978,25 +932,6 @@
   
   .vp-parcelas-cell {
     font-size: 10px;
-  }
-  
-  .vp-footer {
-    padding: 8px;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  
-  .vp-action-btn {
-    padding: 6px 10px;
-    font-size: 10px;
-    gap: 4px;
-    flex: 1;
-    min-width: 70px;
-  }
-  
-  .vp-action-btn img {
-    width: 12px;
-    height: 12px;
   }
 }
 
